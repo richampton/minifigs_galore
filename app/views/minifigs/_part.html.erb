@@ -1,0 +1,12 @@
+	<div class="grid_part">
+		<%= image_tag "#{part.img_url}" %>
+		<form action="/build/" method="post">
+			<input type="hidden" name="part_type" value="<%= part.part_type %>" />
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+			<input type="hidden" name="part_id" value="<%= part.part_id %>" />
+			<input type="hidden" name="form_img_url" value="<%= part.img_url %>" />
+			<input type="hidden" name="form_id" value="<%= part.id %>" />
+			<input type="hidden" name="form_desc" value="<%= part.description %>" />
+			<input type="submit" value="">
+		</form>
+	</div>

@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Mfg</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>Mfg</title>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= csrf_meta_tags %>
+	</head>
 
-<%= yield %>
+	<body>
 
-</body>
+		<header class="bs-docs-nav navbar navbar-static-top" id="top">
+			<div class="container">
+				<ul class="nav navbar-nav">
+				<% if request.original_url.include? 'minifigs' %>
+					<li><h4>Welcome <%= current_user.first_name %></h4></li>
+				<% end %>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+				<% if request.original_url.include? 'minifigs' %>
+					<li><a href="/users/<%= current_user.id %>">Settings</a><li>
+				<% elsif request.original_url.exclude? 'users/new'%>
+					<li><a href="/minifigs/<%= current_user.id %>"><%= current_user.first_name %>'s Minifigs</a></li>
+				<% end %>
+				<% if current_user %>
+					<li>
+						<form id="logout" action='/sessions/<%= current_user.id %>' method='post'>
+							<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+							<input type='hidden' name='_method' value='delete'>
+							<input class="btn btn-default" type='submit' value='Log Out'>
+						</form>
+					</li>
+				<% end %>
+				</ul>
+			</div>
+		</header>
+
+		<div class="container">
+			<div id="message">
+			<% if flash[:errors] %>
+				<% flash[:errors].each do |error| %>
+					<p class="error"><%= error %></p>
+				<% end %>
+			<% end %>
+			<% if flash[:success] %>
+				<p class="success"><%= flash[:success] %></p>
+			<% end %>
+			</div>
+
+			<%= yield %>
+
+		</div>
+	</body>
 </html>

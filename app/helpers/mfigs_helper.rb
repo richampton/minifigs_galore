@@ -1,0 +1,2 @@
+module MfigsHelper
+end

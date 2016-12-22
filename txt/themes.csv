@@ -1,0 +1,602 @@
+theme_id,descr
+029,4 Juniors
+029.01,Jack Stone
+029.01.02,Airport
+029.01.03,Fire
+029.01.05,Gas Station
+029.01.01,Police
+029.01.04,Traffic
+029.02,Pirates
+029.03,Spider-Man
+029.03.01,Spider-Man 2
+029.04,Supplemental
+029.05,Town
+029.05.03,Construction
+029.05.05,Fire
+029.05.04,Gas Station
+029.05.01,Police
+029.05.02,Traffic
+030,Adventurers
+030.01,Desert
+030.02,Dino Island
+030.03,Jungle
+030.04,Orient Expedition
+032,Agents
+032.01,Ultra Agents
+033,Alpha Team
+033.02,Mission Deep Freeze
+033.01,Mission Deep Sea
+112,Angry Birds
+034,Aquazone
+034.01,Aquanauts
+034.02,Aquaraiders I
+034.03,Aquaraiders II
+034.04,Aquasharks
+034.05,Hydronauts
+034.06,Stingrays
+034.07,Supplemental
+014,Architecture
+035,Atlantis
+035.01,Mini
+036,Avatar
+038,Belville
+038.01,Fairy-Tale
+038.02,Golden Land
+038.03,Hospital
+038.04,Playhouse
+038.05,Recreation
+021,Ben 10
+039,Bionicle
+039.01,Agori
+039.02,Barraki
+039.03,Battle Vehicles
+039.04,Bohrok
+039.06,Bohrok-Kal
+039.05,Bohrok Va
+039.07,Glatorian
+039.08,Glatorian Legends
+039.09,Matoran of Light
+039.10,Matoran of Mahri Nui
+039.11,Matoran of Mata Nui
+039.12,Matoran of Metru Nui
+039.13,Matoran of Voya Nui
+039.14,Mistika
+039.15,Phantoka
+039.16,Piraka
+039.17,Playsets
+039.36,Protectors
+039.18,Rahaga
+039.19,Rahi
+039.20,Rahkshi
+039.37,Skull Spiders
+039.21,Stars
+039.22,Supplemental
+039.23,Titans
+039.24,Toa
+039.25,Toa Hagah
+039.26,Toa Hordika
+039.27,Toa Inika
+039.28,Toa Mahri
+039.29,Toa Metru
+039.30,Toa Nuva
+039.38,Toa Okoto
+039.31,Tohunga
+039.32,Turaga
+039.33,Vahki
+039.34,Visorak
+039.35,Warriors
+040,Boat
+083,Books
+083.01,Technic
+083.02,Train
+041,Building Set with People
+015,Bulk Bricks
+015.01,Castle
+015.02,Technic
+015.03,Train
+019,Cars
+009,Castle
+009.01,Black Falcons
+009.02,Black Knights
+009.03,Classic Castle
+009.04,Crusaders
+009.05,Dark Forest
+009.06,Dragon Knights
+009.07,Fantasy Era
+009.08,Forestmen
+009.09,Fright Knights
+009.10,Kingdoms
+009.11,Knights Kingdom I
+009.12,Knights Kingdom II
+009.13,Lion Knights
+009.14,My Own Creation
+009.15,Royal Knights
+009.16,Supplemental
+009.17,Wolfpack
+042,Classic
+042.01,Basic Set
+042.02,Building
+042.03,HO 1:87 Vehicles
+042.04,Jumbo Bricks
+042.05,Mosaic
+042.06,Supplemental
+042.07,Town Plan
+042.08,Vehicle
+042.08.01,Airport
+042.08.09,Cargo
+042.08.08,Construction
+042.08.02,Farm
+042.08.03,Fire
+042.08.04,Harbor
+042.08.06,Supplemental
+042.08.05,Traffic
+042.08.07,Train
+042.09,Wooden Box Set
+084,Clikits
+088,Collectible Minifigures
+088.22,DFB Minifigures
+088.20,Disney
+088.10,Series 10 Minifigures
+088.12,Series 11 Minifigures
+088.13,Series 12 Minifigures
+088.16,Series 13 Minifigures
+088.17,Series 14 Minifigures
+088.19,Series 15 Minifigures
+088.21,Series 16 Minifigures
+088.01,Series 1 Minifigures
+088.02,Series 2 Minifigures
+088.03,Series 3 Minifigures
+088.04,Series 4 Minifigures
+088.05,Series 5 Minifigures
+088.06,Series 6 Minifigures
+088.07,Series 7 Minifigures
+088.08,Series 8 Minifigures
+088.09,Series 9 Minifigures
+088.11,Team GB
+088.14,The LEGO Movie Series
+088.15,The Simpsons
+088.18,The Simpsons Series 2
+002,Creator
+002.01,Basic Model
+002.01.01,Airport
+002.01.12,Building
+002.01.13,Cargo
+002.01.02,Castle
+002.01.03,Construction
+002.01.09,Creature
+002.01.14,Fire
+002.01.11,Food &amp; Drink
+002.01.05,Harbor
+002.01.04,Race
+002.01.10,Robot
+002.01.08,Traffic
+002.01.07,Train
+002.02,Basic Set
+002.05,Mecha
+002.03,Model
+002.03.04,Airport
+002.03.05,Building
+002.03.07,Cargo
+002.03.02,Creature
+002.03.09,Fire
+002.03.08,Harbor
+002.03.06,Recreation
+002.03.03,Riding Cycle
+002.03.01,Traffic
+002.04,Supplemental
+010,Designer Sets
+010.01,Building
+110,Dimensions
+080,Dino
+043,Dino 2010
+044,Dino Attack
+045,Dinosaurs
+046,Discovery
+114,Disney
+100,Disney Princess
+047,Disney&#039;s Mickey Mouse
+086,Duplo
+086.01,Basic Set
+086.02,Cars
+087,Educational and Dacta
+087.01,4 Juniors
+087.02,Adventurers
+087.03,Boat
+087.04,Building Set with People
+087.05,Castle
+087.06,Classic
+087.07,Creator
+087.08,Dinosaurs
+087.09,Explore
+087.10,Learning
+087.11,Mindstorms
+087.11.01,NXT
+087.11.02,RCX
+087.11.03,WeDo
+087.12,Primo
+087.13,Samsonite
+087.14,Service Packs
+087.14.01,Technic
+087.15,Soft Bricks
+087.16,Space
+087.17,Supplemental
+087.18,Technic
+087.18.01,Control Lab
+087.18.02,eLAB
+087.18.03,Supplemental
+087.19,Town
+087.20,Universal Building Set
+106,Elves
+048,Exo-Force
+049,Fabuland
+049.04,Airport
+049.05,Fire
+049.03,Harbor
+049.01,Hospital
+049.06,Police
+049.02,Post Office
+050,Factory
+051,FIRST LEGO League
+052,Freestyle
+082,Friends
+082.02,Animals
+082.01,Jungle Rescue
+102,Fusion
+085,Gear
+085.01,Game
+085.02,Key Chain
+113,Ghostbusters
+013,Harry Potter
+013.01,Chamber of Secrets
+013.02,Goblet of Fire
+013.03,Order of the Phoenix
+013.04,Prisoner of Azkaban
+013.05,Sorcerer&#039;s Stone
+053,Hero Factory
+053.01,Heroes
+053.02,Vehicles
+053.03,Villains
+054,Hobby Sets
+055,Homemaker
+018,Indiana Jones
+018.01,Kingdom of the Crystal Skull
+018.02,Last Crusade
+018.03,Raiders of the Lost Ark
+018.04,Temple of Doom
+056,Inventor
+057,Island Xtreme Stunts
+103,Juniors
+108,Jurassic World
+095,Legends of Chima
+095.02,Constraction
+095.03,Legend Beasts
+095.01,Speedorz
+058,LEGO Brand Store
+058.01,Monthly Mini Model Build
+058.02,Pick A Model
+105,LEGO Exclusive
+097,LEGO Ideas and CUUSOO
+059,Legoland
+059.01,Airport
+059.02,Building
+059.03,Castle
+059.04,Coast Guard
+059.05,Construction
+059.06,Fire
+059.07,Gas Station
+059.08,Harbor
+059.09,Hospital
+059.10,Police
+059.11,Space
+059.12,Vehicle
+059.13,Western
+060,Legoland Parks
+060.01,Bionicle
+060.03,Christmas
+060.04,Halloween
+060.02,Holiday
+060.05,Pirates
+060.06,Star Wars
+061,Master Building Academy
+016,Mindstorms
+016.04,EV3
+016.01,NXT
+016.02,RCX
+016.03,Star Wars
+098,Minecraft
+062,Minitalia
+101,Mixels
+101.01,Series 1
+101.02,Series 2
+101.03,Series 3
+101.04,Series 4
+101.05,Series 5
+101.06,Series 6
+101.07,Series 7
+101.08,Series 8
+101.09,Series 9
+028,Model Team
+007,Modular Buildings
+007.02,Bricktober
+007.01,Mini
+089,Monster Fighters
+111,Nexo Knights
+063,Ninja
+064,Ninjago
+064.01,Airjitzu
+031,Other
+065,Pharaoh&#039;s Quest
+006,Pirates
+006.01,Pirates I
+006.01.01,Imperial Armada
+006.01.02,Imperial Guards
+006.01.03,Imperial Soldiers
+006.01.04,Islanders
+006.02,Pirates II
+006.03,Pirates III
+017,Pirates of the Caribbean
+066,Power Functions
+067,Power Miners
+068,Primo
+022,Prince of Persia
+104,Promotional
+069,Quatro
+004,Racers
+004.01,Drome Racers
+004.02,Ferrari
+004.03,Lamborghini
+004.04,Power Racers
+004.05,Radio Control
+004.06,Speed Racer
+004.07,Supplemental
+004.08,Tiny Turbos
+004.09,Track System
+004.10,Williams F1
+004.11,World Racers
+004.11.01,Supplemental
+004.12,Xalax
+070,Rock Raiders
+109,Scooby-Doo
+027,Sculptures
+027.01,Mosaic
+011,Seasonal
+011.01,Advent
+011.01.03,Belville
+011.01.04,Castle
+011.01.01,City
+011.01.05,Classic Basic
+011.01.06,Clikits
+011.01.07,Creator
+011.01.09,Friends
+011.01.08,Pirates
+011.01.02,Star Wars
+011.02,Advent Sub-Set
+011.02.01,Belville
+011.02.02,Castle
+011.02.03,City
+011.02.04,Classic Basic
+011.02.05,Clikits
+011.02.06,Creator
+011.02.09,Friends
+011.02.07,Pirates
+011.02.08,Star Wars
+011.03,Christmas
+011.03.01,Creator
+011.04,Easter
+011.05,Halloween
+011.06,Thanksgiving
+011.07,Valentine
+071,Service Packs
+071.01,Adventurers
+071.02,Aquazone
+071.03,Belville
+071.04,Castle
+071.05,Fabuland
+071.06,Pirates
+071.07,Primo
+071.08,Scala
+071.09,Space
+071.10,Technic
+071.11,Town
+071.11.01,Classic Town
+071.12,Train
+071.13,Western 
+005,Space
+005.01,Alien Conquest
+005.02,Blacktron I
+005.03,Blacktron II
+005.04,Classic Space
+005.05,Exploriens
+005.06,Futuron
+005.20,Galaxy Squad
+005.07,Ice Planet 2002
+005.08,Insectoids
+005.09,Life On Mars
+005.11,Mars Mission
+005.10,M:Tron
+005.12,RoboForce
+005.13,Space Police I
+005.14,Space Police II
+005.15,Space Police III
+005.16,Spyrius
+005.17,Supplemental
+005.18,UFO
+005.19,Unitron
+107,Speed Champions
+024,SpongeBob SquarePants
+072,Sports
+072.01,Basketball
+072.02,Gravity Games
+072.03,Hockey
+072.04,Soccer
+073,Spybiotics
+008,Star Wars
+008.01,Mini
+008.01.01,Star Wars Clone Wars
+008.01.05,Star Wars Episode 1
+008.01.02,Star Wars Episode 2
+008.01.03,Star Wars Episode 3
+008.01.04,Star Wars Episode 4/5/6
+008.11,Minifig Pack
+008.09,Planet Series 1
+008.10,Planet Series 2
+008.12,Planet Series 3
+008.13,Planet Series 4
+008.13.01,Star Wars Episode 4/5/6
+008.02,Star Wars Clone Wars
+008.03,Star Wars Episode 1
+008.04,Star Wars Episode 2
+008.05,Star Wars Episode 3
+008.06,Star Wars Episode 4/5/6
+008.16,Star Wars Episode 7
+008.15,Star Wars Expanded Universe
+008.07,Star Wars Other
+008.14,Star Wars Rebels
+008.17,Star Wars Rogue One
+008.08,Ultimate Collector Series
+008.08.01,Star Wars Episode 1
+008.08.04,Star Wars Episode 2
+008.08.02,Star Wars Episode 3
+008.08.03,Star Wars Episode 4/5/6
+025,Studios
+025.01,Jurassic Park III
+081,Super Heroes
+081.05,Avengers
+081.03,Batman
+081.03.01,Ultimate Collector Series
+081.10,Constraction
+081.02,Guardians of the Galaxy
+081.08,Iron Man
+081.04,Justice League
+081.11,Marvel
+081.06,Spider-Man
+081.07,Superman
+081.09,X-Men
+001,Technic
+001.01,Arctic Technic
+001.02,Competition
+001.03,Expert Builder
+001.04,Model
+001.04.01,Airport
+001.04.02,Construction
+001.04.03,Farm
+001.04.04,Fire
+001.04.05,Harbor
+001.04.06,Off-Road
+001.04.07,Race
+001.04.08,Riding Cycle
+001.04.09,Robot
+001.04.10,Traffic
+001.05,RoboRiders
+001.06,Speed Slammers
+001.07,Star Wars
+001.08,Supplemental
+001.09,Throwbot Slizer
+001.10,Universal Building Set
+094,Teenage Mutant Ninja Turtles
+093,The Hobbit and Lord of the Rings
+093.01,The Hobbit
+093.01.01,An Unexpected Journey
+093.01.03,The Battle of the Five Armies
+093.01.02,The Desolation of Smaug
+093.02,The Lord of the Rings
+093.02.01,The Fellowship of the Ring
+093.02.03,The Return of the King
+093.02.02,The Two Towers
+099,The LEGO Movie
+096,The Lone Ranger
+074,Time Cruisers
+003,Town
+003.01,Arctic
+003.02,City
+003.02.01,Airport
+003.02.13,Arctic
+003.02.02,Cargo
+003.02.03,Coast Guard
+003.02.04,Construction
+003.02.05,Farm
+003.02.06,Fire
+003.02.07,Harbor
+003.02.08,Hospital
+003.02.12,Off-Road
+003.02.09,Police
+003.02.10,Supplemental
+003.02.11,Traffic
+003.02.14,Trains
+003.03,Classic Town
+003.03.01,Airport
+003.03.02,Building
+003.03.03,Cargo
+003.03.04,Coast Guard
+003.03.05,Construction
+003.03.06,Farm
+003.03.07,Fire
+003.03.08,Food &amp; Drink
+003.03.10,Harbor
+003.03.11,Hospital
+003.03.12,Off-Road
+003.03.13,Police
+003.03.14,Post Office
+003.03.15,Race
+003.03.16,Recreation
+003.03.09,Station
+003.03.17,Supplemental
+003.03.18,Traffic
+003.04,Divers
+003.05,Extreme Team
+003.06,Launch Command
+003.07,Outback
+003.08,Paradisa
+003.09,Race
+003.10,Res-Q
+003.11,Space Port
+003.12,Town Jr.
+003.12.01,Cargo
+003.12.02,Coast Guard
+003.12.03,Construction
+003.12.04,Fire
+003.12.05,Gas Station
+003.12.06,Police
+003.12.07,Race
+003.12.08,Supplemental
+003.12.09,Traffic
+003.13,Town Plan
+003.14,World City
+003.14.01,Airport
+003.14.02,Coast Guard
+003.14.03,Fire
+003.14.04,Food &amp; Drink
+003.14.05,Harbor
+003.14.06,Police
+026,Toy Story
+012,Train
+012.01,12V
+012.02,4.5V
+012.03,9V
+012.03.01,My Own Creation
+012.03.02,My Own Train
+012.03.03,World City
+012.04,RC Train
+012.05,Supplemental
+012.05.01,12V
+012.05.02,4.5V
+012.05.03,9V
+012.05.04,RC Train
+075,Universal Building Set
+075.01,Airport
+075.02,Basic
+075.03,Basic Model
+075.04,Basic Set
+075.05,Classic Basic
+075.06,Ferries
+075.07,Gears
+075.08,Supplemental
+092,Universe
+091,Value Packs
+076,Vikings
+077,Western
+077.01,Cowboys
+077.02,Indians
+078,X-Pod
+078.01,Creator
+079,Znap

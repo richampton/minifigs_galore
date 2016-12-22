@@ -1,0 +1,115 @@
+// Place all the styles related to the Mfigs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// ..... COLORS .....
+header { 
+	background-color: #fc3;
+}
+.panel-default, .panel-default>.panel-heading, .form-control, .btn-default { 
+	border-color: #fc3 !important;
+}
+.panel-default>.panel-heading {
+	background-color: #fff4cc !important;
+}
+h2 {
+	color: #337ab7 !important;
+}
+
+
+// ..... OVERIDE BOOTSRAP .....
+header {
+	margin-bottom: 0.5em !important;
+	padding-top: 0.5em !important;
+}
+.navbar-nav > li > a {
+	padding-top: 0.5em !important;
+	padding-bottom: 0.5em !important;
+}
+.container {
+	padding: 0 !important;
+}
+@media (min-width: 992px) {
+	.container {
+		margin: 0 auto;
+		padding: 0 !important;
+		width: 820px !important;
+	}
+}
+.navbar-form {
+	padding: 0 !important;
+}
+.tab-content {
+	margin-top: 1em;
+}
+#saved.tab-pane {
+	text-align: center;
+}
+
+
+// ..... OVERIDE KAMINARI .....
+span.page, span.page a {
+	text-align: center;
+	display: inline-block;
+	width: 16px;
+}
+
+
+// ..... APP .....
+#col1, #col2 {
+	margin: 0.5em;
+	display: inline-block;
+	vertical-align: top;
+	width: 390px;
+	min-height: 450px;
+}
+.grid_part {
+	margin: 0;
+	display: inline-block;
+	vertical-align: top;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	img {
+		width: 80px;
+	}
+	form {
+		visibility: hidden;
+	}
+}
+.form_img_url {
+	width: 192px;
+}
+ .form_img_url + p {
+	width: 160px;
+}
+.form_img_url, .form_img_url + p {
+	display: inline-block;
+	vertical-align: top;
+}
+.form_div, .form_img_url + p {
+	height: 192px;
+}
+#saved  {
+	padding: 0.25em;
+	.saved {
+		text-align: center;
+		display: inline-block;
+		vertical-align: top;
+		width: 100px;
+		height: 400px;
+	}
+	h6 {
+		height: 3em;
+		overflow: hidden;
+	}
+	img {
+		margin: 0 10px;
+		width: 80px;
+	}
+}
+
+
+
+

@@ -1,0 +1,57 @@
+<form action="/minifigs" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+	<input type="hidden" name="minifig[user_id]" value="<%= current_user.id %>">
+
+	<div class="form-group">
+		<label class="control-label">Title</label>
+		<input class="form-control" id="form_name" type="text" name="minifig[title]">
+	</div>
+	<div class="form-group">
+		<label class="control-label">Note</label>
+		<textarea class="form-control" id="form_note" name="minifig[content]"></textarea>
+	</div>
+	<div class="form-group">
+		<input class="btn btn-primary" type="submit" value="Save">
+	</div>
+
+	<div id="form_head" class="form_div">
+		<img class="form_img_url" src="<%= session[:head_img_url] %>" alt="Head" />
+		<p>
+			<strong>Part ID:</strong> <span class="form_id"><%= session[:head_part_id] %></span>
+			<br /><br />
+			<strong>Description:</strong> <span class="form_desc"><%= session[:head_desc] %></span>
+		</p>
+		<input type="hidden" name="minifig[head_id]" value="<%= session[:head_id] %>">
+	</div>
+
+	<div id="form_torso" class="form_div">
+		<img class="form_img_url" src="<%= session[:torso_img_url] %>" alt="Torso" />
+		<p>
+			<strong>Part ID:</strong> <span class="form_id"><%= session[:torso_part_id] %></span>
+			<br /><br />
+			<strong>Description:</strong> <span class="form_desc"><%= session[:torso_desc] %></span>
+		</p>
+		<input type="hidden" name="minifig[torso_id]" value="<%= session[:torso_id] %>">
+	</div>
+
+	<div id="form_leg" class="form_div">
+		<img class="form_img_url" src="<%= session[:leg_img_url] %>" alt="Legs" />
+		<p>
+			<strong>Part ID:</strong> <span class="form_id"><%= session[:leg_part_id] %></span>
+			<br /><br />
+			<strong>Description:</strong> <span class="form_desc"><%= session[:leg_desc] %></span>
+		</p>
+		<input type="hidden" name="minifig[leg_id]" value="<%= session[:leg_id] %>">
+	</div>
+
+	<div id="form_accessory" class="form_div">
+		<img class="form_img_url" src="<%= session[:accessory_img_url] %>" alt="Accessory" />
+		<p>
+			<strong>Part ID:</strong> <span class="form_id"><%= session[:accessory_part_id] %></span>
+			<br /><br />
+			<strong>Description:</strong> <span class="form_desc"><%= session[:accessory_desc] %></span>
+		</p>
+		<input type="hidden" name="minifig[accessory_id]" value="<%= session[:accessory_id] %>">
+	</div>
+
+</form>

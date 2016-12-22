@@ -1,0 +1,66 @@
+
+<div id="col1">
+	<h2>Build a Minifig</h2>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<form class="navbar-form" action="/search/" method="post">
+				<div class="form-group">
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+					<select class="form-control" name="part_type">
+						<option selected value="<%= Head.first.part_type %>">Heads</option>
+						<option value="<%= Torso.first.part_type %>">Torsos</option>
+						<option value="<%= Leg.first.part_type %>">Legs</option>
+						<option value="<%= Accessory.first.part_type %>">Accessories</option>
+					</select>
+					<input class="form-control" name="part_search">
+					<button class="btn btn-default">Search</button>
+				</div>
+			</form>
+		</div>
+		<div class="panel-body">
+			<div id="search_body">
+				<%= render partial: "/minifigs/search_result.html.erb", locals: {parts: @parts} %>
+			</div>
+			<div id="search_links">
+				<%= paginate @parts, param_name: @part_page %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="col2">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<ul class="nav nav-pills" role="tablist">
+				<li role="presentation" class="active">
+					<a href="#build" aria-controls="build" role="tab" data-toggle="pill">Build view</a>
+				</li>
+				<li role="presentation">
+					<a href="#saved" aria-controls="saved" role="tab" data-toggle="pill">Latest builds</a>
+				</li>
+				<li role="presentation">
+					<a href="/users/<%= current_user.id %>">All builds</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="build">
+					<%= render partial: "/minifigs/form_minifig.html.erb" %>
+				</div>
+				<div role="tabpanel" class="tab-pane active" id="saved">
+					<%= render partial: "/minifigs/all_minifig.html.erb" %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function(){
+		$(".grid_part").on("click", function() {
+			console.log('click');
+			$(this).find("form")[0].submit();
+		});
+	});
+</script>

@@ -1,4 +1,32 @@
 Rails.application.routes.draw do
+
+   # Register / Profile
+   get    'users/new'         => 'users#new'
+   post   'users/'            => 'users#create'
+   #get    'users/:id/edit'    => 'users#edit' - same as show
+   get    'users/:id'         => 'users#show'
+   patch  'users/:id'         => 'users#update'
+   delete 'users/:id'         => 'users#destroy'
+
+   # Login
+   post   'sessions/'         => 'sessions#create'
+   delete 'sessions/:id'      => 'sessions#destroy'
+
+   # Minifig
+   # get    'minifigs/new'      => 'minifigs#new' - same as show?
+   post   'search/'           => 'minifigs#search'
+   post   'build/'            => 'minifigs#build'
+   post   'minifigs/'         => 'minifigs#create'
+   get    'minifigs/:id/edit' => 'minifigs#edit'
+   get    'minifigs/:id'      => 'minifigs#show'
+   patch  'minifigs/:id'      => 'minifigs#update'
+   delete 'minifigs/:id'      => 'minifigs#destroy'
+
+   # Comment
+   post   'comments/'         => 'comments#create'
+   delete 'comments/:id'      => 'comments#destroy'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

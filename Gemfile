@@ -63,6 +63,15 @@ gem 'rails-footnotes', '>= 4.0.0', '<5'
 #Use pry
 gem 'pry'
 
+# Use pgreset
+gem 'pgreset', '~> 0.1.1'
+
+# Use http - easy-to-use client library for making requests from Ruby
+gem 'http', '~> 0.9.8'
+
+# Use kaminari paginator
+gem 'kaminari'
+
 # Testing suite -- ADD IF NEEDED!!! NEED TO INSTALL RSPEC AFTER 
 group :development, :test do
 	gem 'byebug'

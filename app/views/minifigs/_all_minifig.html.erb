@@ -1,0 +1,17 @@
+<% saved_minifigs = Minifig.where(user_id:current_user.id).order(created_at: :desc).limit(3) %>
+<% saved_minifigs.each do |saved_minifig| %>
+<div class="saved">
+	<h5><%= saved_minifig.title %></h5>
+	<% saved_minifig_head = Head.find(saved_minifig.head_id) %>
+	<%= image_tag "#{saved_minifig_head.img_url}", alt: "#{saved_minifig_head.part_id}" %>
+
+	<% saved_minifig_torso = Torso.find(saved_minifig.torso_id) %>
+	<%= image_tag "#{saved_minifig_torso.img_url}", alt: "#{saved_minifig_torso.part_id}" %>
+
+	<% saved_minifig_leg = Leg.find(saved_minifig.leg_id) %>
+	<%= image_tag "#{saved_minifig_leg.img_url}", alt: "#{saved_minifig_leg.part_id}" %>
+	
+	<% saved_minifig_accessory = Accessory.find(saved_minifig.accessory_id) %>
+	<%= image_tag "#{saved_minifig_accessory.img_url}", alt: "#{saved_minifig_accessory.part_id}" %>
+</div>
+<% end %>
