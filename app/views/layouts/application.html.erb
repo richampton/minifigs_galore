@@ -5,10 +5,12 @@
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Thambi" rel="stylesheet">
 	</head>
 
 	<body>
 
+		<% unless current_page?('/') %>
 		<header class="bs-docs-nav navbar navbar-static-top" id="top">
 			<div class="container">
 				<ul class="nav navbar-nav">
@@ -39,8 +41,9 @@
 				</ul>
 			</div>
 		</header>
+		<% end %>
 
-		<div class="container">
+		<div class="container container-tall">
 			<% if flash[:errors] %>
 			<div id="message" class="bg-danger">
 				<% flash[:errors].each do |error| %>
@@ -55,7 +58,7 @@
 			<% end %>
 
 			<%= yield %>
-
+		</div>
 		</div>
 
 		<footer>
@@ -63,5 +66,6 @@
 				<p>&copy; 2016-2017 Minifigs Galore</p>
 			</div>
 		</footer>
+
 	</body>
 </html>

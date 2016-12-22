@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+   root to: 'users#index'
+
    # Register / Profile
    get    'users/new'         => 'users#new'
    post   'users/'            => 'users#create'

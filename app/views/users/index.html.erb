@@ -1,0 +1,64 @@
+<h1 id="mfg_h1">
+   <a href="/users/new">
+      <span class="h1_first">Minifigs</span><br />
+      <span class="h1_second">Galore</span>
+   </a>
+</h1>
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+   <% saved_minifig = Minifig.last(3) %>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img class="hero" src="http://1x1px.me/FFFFFF-0.0.png">
+      <div class="carousel-caption">
+         
+            <% saved_1_head = Head.find(saved_minifig.first.head_id) %>
+            <%= image_tag "#{saved_1_head.img_url}", alt: "#{saved_1_head.part_id}" %>
+
+            <% saved_1_torso = Torso.find(saved_minifig.first.torso_id) %>
+            <%= image_tag "#{saved_1_torso.img_url}", alt: "#{saved_1_torso.part_id}", style: "position:relative;left:1em;"
+ %>
+
+            <% saved_1_leg = Leg.find(saved_minifig.first.leg_id) %>
+            <%= image_tag "#{saved_1_leg.img_url}", alt: "#{saved_1_leg.part_id}" %>
+
+      </div>
+    </div>
+    <div class="item">
+      <img class="hero" src="http://1x1px.me/FFFFFF-0.0.png">
+      <div class="carousel-caption">
+
+            <% saved_2_head = Head.find(saved_minifig.second.head_id) %>
+            <%= image_tag "#{saved_2_head.img_url}", alt: "#{saved_2_head.part_id}" %>
+
+            <% saved_2_torso = Torso.find(saved_minifig.second.torso_id) %>
+            <%= image_tag "#{saved_2_torso.img_url}", alt: "#{saved_2_torso.part_id}", style: "position:relative;left:1em;"
+ %>
+
+            <% saved_2_leg = Leg.find(saved_minifig.second.leg_id) %>
+            <%= image_tag "#{saved_2_leg.img_url}", alt: "#{saved_2_leg.part_id}" %>
+
+      </div>
+    </div>
+    <div class="item">
+      <img class="hero" src="http://1x1px.me/FFFFFF-0.0.png">
+      <div class="carousel-caption">
+
+            <% saved_3_head = Head.find(saved_minifig.third.head_id) %>
+            <%= image_tag "#{saved_3_head.img_url}", alt: "#{saved_3_head.part_id}" %>
+
+            <% saved_3_torso = Torso.find(saved_minifig.third.torso_id) %>
+            <%= image_tag "#{saved_3_torso.img_url}", alt: "#{saved_3_torso.part_id}", style: "position:relative;left:1em;"
+ %>
+
+            <% saved_3_leg = Leg.find(saved_minifig.third.leg_id) %>
+            <%= image_tag "#{saved_3_leg.img_url}", alt: "#{saved_3_leg.part_id}" %>
+
+      </div>
+    </div>
+  </div>
+
+</div>
