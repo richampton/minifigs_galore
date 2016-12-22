@@ -12,7 +12,7 @@
 						<option <% if session[:part_type] == "legs" %>selected<% end %> value="<%= Leg.first.part_type %>">Legs</option>
 						<option <% if session[:part_type] == "accessory" %>selected<% end %> value="<%= Accessory.first.part_type %>">Accessories</option>
 					</select>
-					<input class="form-control" name="part_search">
+					<input id="part_search" class="form-control" name="part_search" value="<%= session[:part_search] %>" />
 					<button class="btn btn-default">Search</button>
 				</div>
 			</form>
@@ -59,10 +59,17 @@
 <script>
 	$(document).ready(function(){
 		$(".grid_part").on("click", function() {
-			console.log('click');
 			$(this).find("form")[0].submit();
 		});
-
+		$("#part_search").on("focus", function() {
+			$(this).attr("data-search", $(this).val());
+			$(this).val('');
+		});
+		$("#part_search").on("blur", function() {
+			if ($(this).val() == '') {
+				$(this).val( $(this).attr("data-search") );
+			}
+		});
 
 		// $('.form_div img').click(function(event) {
 		// 	event.preventDefault();
