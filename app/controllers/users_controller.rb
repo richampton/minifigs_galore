@@ -4,12 +4,13 @@ class UsersController < ApplicationController
    before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
 
    def new
+      # reset_session
    end
 
    def create
       @user = User.new(user_params)
       if @user.save
-         flash[:success] = "User #{@user[:name]} #{@user[:last_name]} saved"
+         # flash[:success] = "User #{@user[:name]} #{@user[:last_name]} saved"
          session[:user_id] = User.find_by(email: @user.email).id
          redirect_to "/minifigs/#{@user.id}"
       else

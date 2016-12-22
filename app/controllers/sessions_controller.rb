@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 	def create
 		@user = User.find_by_email(params[:email])
+		puts '~~~~~~~~~~~~~~','pe',session[:email],'sid',session[:user_id],'uid',@user.id
 		if  @user and @user.email == params[:email]
 			session[:user_id] = @user.id
 			redirect_to "/minifigs/#{@user.id}"

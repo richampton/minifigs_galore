@@ -30,7 +30,7 @@
 
 
 <div id="col2">
-	<div class="panel panel-default">
+	<div class="panel panel-default panel-build">
 		<div class="panel-body">
 			<ul class="nav nav-pills" role="tablist">
 				<li role="presentation" class="active">
@@ -65,11 +65,11 @@
 			$(this).attr("data-search", $(this).val());
 			$(this).val('');
 		});
-		$("#part_search").on("blur", function() {
-			if ($(this).val() == '') {
-				$(this).val( $(this).attr("data-search") );
-			}
-		});
+		// $("#part_search").on("blur", function() {
+		// 	if ($(this).val() == '') {
+		// 		$(this).val( $(this).attr("data-search") );
+		// 	}
+		// });
 
 		// $('.form_div img').click(function(event) {
 		// 	event.preventDefault();

@@ -12,8 +12,12 @@
 		<header class="bs-docs-nav navbar navbar-static-top" id="top">
 			<div class="container">
 				<ul class="nav navbar-nav">
+					<li><img id="icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/50961-200.png" /></li>
 				<% if request.original_url.include? 'minifigs' %>
-					<li><h4>Welcome <%= current_user.first_name %></h4></li>
+					<li><h3>Welcome <%= current_user.first_name %></h3></li>
+				<% elsif request.original_url.include? 'users/new' %>
+
+					<li><h3>Minfigs Galore</h3></l3>
 				<% end %>
 				</ul>
 
@@ -37,16 +41,18 @@
 		</header>
 
 		<div class="container">
-			<div id="message">
 			<% if flash[:errors] %>
+			<div id="message" class="bg-danger">
 				<% flash[:errors].each do |error| %>
 					<p class="error"><%= error %></p>
 				<% end %>
+			</div>
 			<% end %>
 			<% if flash[:success] %>
+			<div id="message" class="bg-success">
 				<p class="success"><%= flash[:success] %></p>
-			<% end %>
 			</div>
+			<% end %>
 
 			<%= yield %>
 

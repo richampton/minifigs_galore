@@ -6,6 +6,9 @@
 // ..... COLORS .....
 header { 
 	background-color: #fc3;
+	h3, h4 {
+		color: #337ab7 !important;
+	}
 }
 .panel-default, .panel-default>.panel-heading, .form-control, .btn-default { 
 	border-color: #fc3 !important;
@@ -57,16 +60,29 @@ span.page, span.page a {
 
 
 // ..... APP .....
+
+#icon {
+	width: 50px;
+	margin-right: 1em;
+}
 #col1, #col2 {
 	margin: 0.5em;
 	display: inline-block;
 	vertical-align: top;
 	width: 390px;
-
+}
+.row-gap {
+	margin-top: 2em;
+}
+#message {
+	padding: 0.5em
 }
 .panel-search {
 	position: relative;
 	height: 480px;
+}
+.panel-build {
+	min-height: 543px;
 }
 #search_links {
 	text-align: center;
