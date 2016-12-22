@@ -1,5 +1,7 @@
 <div class="search_result">
+<% if parts %>
 	<% parts.each do |part| %>
 		<%= render partial: "/minifigs/part", locals: {part: part} %>
 	<% end %>
+<% end %>
 </div>

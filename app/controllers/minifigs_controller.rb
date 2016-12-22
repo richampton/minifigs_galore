@@ -1,9 +1,15 @@
 class MinifigsController < ApplicationController
 
    def show
-      puts '++++++++++++++++', 'session[:part_search]', session[:part_search]
-      if session[:part_type]
+      # reset_session
+      if session[:part_search]
          search_term = session[:part_search]
+      else
+         session[:part_search] = ''
+         search_term = session[:part_search]
+      end
+
+      if session[:part_type]
          case session[:part_type]
             when  nil        then 
                @parts = Head.where("lower(description) like ?", "%#{ search_term.downcase }%").page(params[:page])
@@ -18,6 +24,7 @@ class MinifigsController < ApplicationController
          end
       else
          @parts = Head.page(params[:page])
+         session[:part_type] = 'head'
       end
    end
 
@@ -111,7 +118,14 @@ end
       #  :query        => "hair",
       #  :part_type_id => "26"
       #})
-
+      #@part = HTTP.get("https://rebrickable.com/api/get_part", 
+      #:params => { 
+      #  :key          => "#{key}", 
+      #  :format       => "json",
+      #  :part_id      =>  ,
+      #  :inc_ext      => 1,
+      #  :inc_colors   => 1
+      #})
 
 # COPY heads(part_id, description, part_type, min_year, max_year, url, img_url) FROM '/Users/richhampton/Documents/ror/rails/mfg/txt/rebrickable_heads.gdoc.csv' DELIMITER ',' CSV HEADER;
 # COPY torsos(part_id, description, part_type, min_year, max_year, url, img_url) FROM '/Users/richhampton/Documents/ror/rails/mfg/txt/rebrickable_torsos.gdoc.csv' DELIMITER ',' CSV HEADER;

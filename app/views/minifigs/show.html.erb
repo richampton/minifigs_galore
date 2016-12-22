@@ -1,16 +1,16 @@
 
 <div id="col1">
 	<h2>Build a Minifig</h2>
-	<div class="panel panel-default">
+	<div class="panel panel-default panel-search">
 		<div class="panel-heading">
 			<form class="navbar-form" action="/search/" method="post">
 				<div class="form-group">
 					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 					<select class="form-control" name="part_type">
-						<option selected value="<%= Head.first.part_type %>">Heads</option>
-						<option value="<%= Torso.first.part_type %>">Torsos</option>
-						<option value="<%= Leg.first.part_type %>">Legs</option>
-						<option value="<%= Accessory.first.part_type %>">Accessories</option>
+						<option <% if session[:part_type] == "head" %>selected<% end %> value="<%= Head.first.part_type %>">Heads</option>
+						<option <% if session[:part_type] == "torso" %>selected<% end %> value="<%= Torso.first.part_type %>">Torsos</option>
+						<option <% if session[:part_type] == "legs" %>selected<% end %> value="<%= Leg.first.part_type %>">Legs</option>
+						<option <% if session[:part_type] == "accessory" %>selected<% end %> value="<%= Accessory.first.part_type %>">Accessories</option>
 					</select>
 					<input class="form-control" name="part_search">
 					<button class="btn btn-default">Search</button>
@@ -39,15 +39,15 @@
 				<li role="presentation">
 					<a href="#saved" aria-controls="saved" role="tab" data-toggle="pill">Latest builds</a>
 				</li>
-				<li role="presentation">
+				<!--li role="presentation">
 					<a href="/users/<%= current_user.id %>">All builds</a>
-				</li>
+				</li-->
 			</ul>
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="build">
 					<%= render partial: "/minifigs/form_minifig.html.erb" %>
 				</div>
-				<div role="tabpanel" class="tab-pane active" id="saved">
+				<div role="tabpanel" class="tab-pane" id="saved">
 					<%= render partial: "/minifigs/all_minifig.html.erb" %>
 				</div>
 			</div>
@@ -64,60 +64,35 @@
 		});
 
 
-		$('#form_head').click(function(event) {
-			event.preventDefault();
-			$.ajax({
-				url           : "https://rebrickable.com/api/get_part",
-				data : {
-					key        : "QVH4zSR0PZ",
-					format     : "json",
-					part_id    : $(this).find(".form_id").html(),
-					inc_ext    : 1,
-					inc_colors : 1,
-				},
-				type          : "GET",
-				dataType      : "json",
-			})
-
-			.done(function( json ) {
-				console.log('ajax success rebrickable');
-				var lego_design_id = json.external_part_ids[1].lego_design_id;
-
-				$.ajax({
-					url       : "https://api.brickowl.com/v1/catalog/search",
-					data : {
-						key    : "60bc73a3b961049c242064bc77a5632c7d3a6fa6ef23859334b9540a11010e10",
-						query  : lego_design_id,
-					},
-					type       : "GET",
-					dataType   : "json",
-				})
-				.done(function( json ) {
-					console.log('ajax success brickowl');
-					$("#col1").append(json);
-					$("#col1").append(json[0]);
-				})
-					.fail(function( xhr, status, errorThrown ) {
-					// alert( "Sorry, there was a problem!" );
-					console.log( "brickowl Error: " + errorThrown );
-					console.log( "brickowl Status: " + status );
-					console.dir( xhr );
-				})
-
-
-			})
-			.fail(function( xhr, status, errorThrown ) {
-				// alert( "Sorry, there was a problem!" );
-				console.log( "rebrickable Error: " + errorThrown );
-				console.log( "rebrickable Status: " + status );
-				console.dir( xhr );
-			})
-
-			.always(function( xhr, status ) {
-				// alert( "The request is complete!" );
-			});
-
-		});
+		// $('.form_div img').click(function(event) {
+		// 	event.preventDefault();
+		// 	$.ajax({
+		// 		url           : "https://rebrickable.com/api/get_part",
+		// 		data : {
+		// 			key        : "QVH4zSR0PZ",
+		// 			format     : "json",
+		// 			part_id    : $(this).parents(".form_div").find(".form_id").html(),
+		// 			inc_rels   : 1,
+		// 		},
+		// 		type          : "GET",
+		// 		dataType      : "json",
+		// 	})
+		// 	.done(function( json ) {
+		// 		console.log( json.related_parts[0].related_to.part_id );
+		// 		var arr = JSON.stringify( json.related_parts )
+		// 		$("#col1").append("test");
+		// 		$("#col1").append(arr);
+		// 	})
+		// 	.fail(function( xhr, status, errorThrown ) {
+		// 		// alert( "Sorry, there was a problem!" );
+		// 		console.log( "rebrickable Error: " + errorThrown );
+		// 		console.log( "rebrickable Status: " + status );
+		// 		console.dir( xhr );
+		// 	})
+		// 	.always(function( xhr, status ) {
+		// 		// alert( "The request is complete!" );
+		// 	});
+		// });
 
 	});
 </script>
