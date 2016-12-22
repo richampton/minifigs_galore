@@ -15,7 +15,15 @@
 	</div>
 
 	<div id="form_head" class="form_div">
-		<img class="form_img_url" src="<%= session[:head_img_url] %>" alt="Head" />
+		<img 
+			<% if session[:head_img_url] %>
+				class="form_img_url" 
+				src="<%= session[:head_img_url] %>"
+			<% else %>
+				class="form_img_url ghost" 
+				src="<%= Head.find(933).img_url %>"
+			<% end %>
+		alt="Head" />
 		<p>
 			<strong>Part ID:</strong> <span class="form_id"><%= session[:head_part_id] %></span>
 			<br />
@@ -25,7 +33,15 @@
 	</div>
 
 	<div id="form_torso" class="form_div">
-		<img class="form_img_url" src="<%= session[:torso_img_url] %>" alt="Torso" />
+		<img 
+			<% if session[:torso_img_url] %>
+				class="form_img_url" 
+				src="<%= session[:torso_img_url] %>"
+			<% else %>
+				class="form_img_url ghost" 
+				src="<%= Torso.find(103).img_url %>"
+			<% end %>
+		alt="Torso" />
 		<p>
 			<strong>Part ID:</strong> <span class="form_id"><%= session[:torso_part_id] %></span>
 			<br />
@@ -35,7 +51,15 @@
 	</div>
 
 	<div id="form_leg" class="form_div">
-		<img class="form_img_url" src="<%= session[:leg_img_url] %>" alt="Legs" />
+		<img 
+			<% if session[:leg_img_url] %>
+				class="form_img_url" 
+				src="<%= session[:leg_img_url] %>"
+			<% else %>
+				class="form_img_url ghost" 
+				src="<%= Leg.find(282).img_url %>"
+			<% end %>
+		alt="Legs" />
 		<p>
 			<strong>Part ID:</strong> <span class="form_id"><%= session[:leg_part_id] %></span>
 			<br />
@@ -45,7 +69,15 @@
 	</div>
 
 	<div id="form_accessory" class="form_div">
-		<img class="form_img_url" src="<%= session[:accessory_img_url] %>" alt="Accessory" />
+		<img 
+			<% if session[:accessory_img_url] %>
+				class="form_img_url" 
+				src="<%= session[:accessory_img_url] %>"
+			<% else %>
+				class="form_img_url ghost" 
+				src="<%= Accessory.find(196).img_url %>"
+			<% end %>
+		alt="Accessory" />
 		<p>
 			<strong>Part ID:</strong> <span class="form_id"><%= session[:accessory_part_id] %></span>
 			<br />

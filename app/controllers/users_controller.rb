@@ -4,7 +4,27 @@ class UsersController < ApplicationController
    before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
 
    def new
-      # reset_session
+      session[:part_type]         = nil
+      session[:part_search]       = nil
+      session[:form_name]         = nil
+      session[:form_note]         = nil
+      session[:part_type]         = nil
+      session[:head_id]           = nil
+      session[:head_img_url]      = nil
+      session[:head_part_id]      = nil
+      session[:head_desc]         = nil
+      session[:torso_id]          = nil
+      session[:torso_img_url]     = nil
+      session[:torso_part_id]     = nil
+      session[:torso_desc]        = nil
+      session[:leg_id]            = nil
+      session[:leg_img_url]       = nil
+      session[:leg_part_id]       = nil
+      session[:leg_desc]          = nil
+      session[:accessory_id]      = nil
+      session[:accessory_img_url] = nil
+      session[:accessory_part_id] = nil
+      session[:accessory_desc]    = nil
    end
 
    def create
