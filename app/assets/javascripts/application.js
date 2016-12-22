@@ -16,245 +16,338 @@
 //= require_tree .
 //= require bootstrap.min
 
-/*!
- * Lazy Load - jQuery plugin for lazy loading images
- *
- * Copyright (c) 2007-2015 Mika Tuupola
- *
- * Licensed under the MIT license:
- *   http://www.opensource.org/licenses/mit-license.php
- *
- * Project home:
- *   http://www.appelsiini.net/projects/lazyload
- *
- * Version:  1.9.7
- *
+
+
+// oauth-1.0a
+// https://github.com/ddo/oauth-1.0a/blob/master/oauth-1.0a.js
+
+if (typeof(module) !== 'undefined' && typeof(exports) !== 'undefined') {
+    module.exports = OAuth;
+}
+
+/**
+ * Constructor
+ * @param {Object} opts consumer key and secret
  */
+function OAuth(opts) {
+    if(!(this instanceof OAuth)) {
+        return new OAuth(opts);
+    }
 
- // https://raw.githubusercontent.com/tuupola/jquery_lazyload/master/jquery.lazyload.js
-(function($, window, document, undefined) {
-    var $window = $(window);
+    if(!opts) {
+        opts = {};
+    }
 
-    $.fn.lazyload = function(options) {
-        var elements = this;
-        var $container;
-        var settings = {
-            threshold       : 0,
-            failure_limit   : 0,
-            event           : "scroll",
-            effect          : "show",
-            container       : window,
-            data_attribute  : "original",
-            skip_invisible  : false,
-            appear          : null,
-            load            : null,
-            placeholder     : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
-        };
+    if(!opts.consumer) {
+        throw new Error('consumer option is required');
+    }
 
-        function update() {
-            var counter = 0;
+    this.consumer            = opts.consumer;
+    this.nonce_length        = opts.nonce_length || 32;
+    this.version             = opts.version || '1.0';
+    this.parameter_seperator = opts.parameter_seperator || ', ';
 
-            elements.each(function() {
-                var $this = $(this);
-                if (settings.skip_invisible && !$this.is(":visible")) {
-                    return;
-                }
-                if ($.abovethetop(this, settings) ||
-                    $.leftofbegin(this, settings)) {
-                        /* Nothing. */
-                } else if (!$.belowthefold(this, settings) &&
-                    !$.rightoffold(this, settings)) {
-                        $this.trigger("appear");
-                        /* if we found an image we'll load, reset the counter */
-                        counter = 0;
-                } else {
-                    if (++counter > settings.failure_limit) {
-                        return false;
-                    }
-                }
-            });
+    if(typeof opts.last_ampersand === 'undefined') {
+        this.last_ampersand = true;
+    } else {
+        this.last_ampersand = opts.last_ampersand;
+    }
 
+    // default signature_method is 'PLAINTEXT'
+    this.signature_method = opts.signature_method || 'PLAINTEXT';
+
+    if(this.signature_method == 'PLAINTEXT' && !opts.hash_function) {
+        opts.hash_function = function(base_string, key) {
+            return key;
         }
+    }
 
-        if(options) {
-            /* Maintain BC for a couple of versions. */
-            if (undefined !== options.failurelimit) {
-                options.failure_limit = options.failurelimit;
-                delete options.failurelimit;
+    if(!opts.hash_function) {
+        throw new Error('hash_function option is required');
+    }
+
+    this.hash_function = opts.hash_function;
+}
+
+/**
+ * OAuth request authorize
+ * @param  {Object} request data
+ * {
+ *     method,
+ *     url,
+ *     data
+ * }
+ * @param  {Object} key and secret token
+ * @return {Object} OAuth Authorized data
+ */
+OAuth.prototype.authorize = function(request, token) {
+    var oauth_data = {
+        oauth_consumer_key: this.consumer.key,
+        oauth_nonce: this.getNonce(),
+        oauth_signature_method: this.signature_method,
+        oauth_timestamp: this.getTimeStamp(),
+        oauth_version: this.version
+    };
+
+    if(!token) {
+        token = {};
+    }
+
+    if(token.key) {
+        oauth_data.oauth_token = token.key;
+    }
+
+    if(!request.data) {
+        request.data = {};
+    }
+
+    oauth_data.oauth_signature = this.getSignature(request, token.secret, oauth_data);
+
+    return oauth_data;
+};
+
+/**
+ * Create a OAuth Signature
+ * @param  {Object} request data
+ * @param  {Object} token_secret key and secret token
+ * @param  {Object} oauth_data   OAuth data
+ * @return {String} Signature
+ */
+OAuth.prototype.getSignature = function(request, token_secret, oauth_data) {
+    return this.hash_function(this.getBaseString(request, oauth_data), this.getSigningKey(token_secret));
+};
+
+/**
+ * Base String = Method + Base Url + ParameterString
+ * @param  {Object} request data
+ * @param  {Object} OAuth data
+ * @return {String} Base String
+ */
+OAuth.prototype.getBaseString = function(request, oauth_data) {
+    return request.method.toUpperCase() + '&' + this.percentEncode(this.getBaseUrl(request.url)) + '&' + this.percentEncode(this.getParameterString(request, oauth_data));
+};
+
+/**
+ * Get data from url
+ * -> merge with oauth data
+ * -> percent encode key & value
+ * -> sort
+ *
+ * @param  {Object} request data
+ * @param  {Object} OAuth data
+ * @return {Object} Parameter string data
+ */
+OAuth.prototype.getParameterString = function(request, oauth_data) {
+    var base_string_data = this.sortObject(this.percentEncodeData(this.mergeObject(oauth_data, this.mergeObject(request.data, this.deParamUrl(request.url)))));
+
+    var data_str = '';
+
+    //base_string_data to string
+    for(var key in base_string_data) {
+        var value = base_string_data[key];
+        // check if the value is an array
+        // this means that this key has multiple values
+        if (value && Array.isArray(value)){
+          // sort the array first
+          value.sort();
+
+          var valString = "";
+          // serialize all values for this key: e.g. formkey=formvalue1&formkey=formvalue2
+          value.forEach((function(item, i){
+            valString += key + '=' + item;
+            if (i < value.length){
+              valString += "&";
             }
-            if (undefined !== options.effectspeed) {
-                options.effect_speed = options.effectspeed;
-                delete options.effectspeed;
-            }
-
-            $.extend(settings, options);
-        }
-
-        /* Cache container as jQuery as object. */
-        $container = (settings.container === undefined ||
-                      settings.container === window) ? $window : $(settings.container);
-
-        /* Fire one scroll event per scroll. Not one scroll event per image. */
-        if (0 === settings.event.indexOf("scroll")) {
-            $container.on(settings.event, function() {
-                return update();
-            });
-        }
-
-        this.each(function() {
-            var self = this;
-            var $self = $(self);
-
-            self.loaded = false;
-
-            /* If no src attribute given use data:uri. */
-            if ($self.attr("src") === undefined || $self.attr("src") === false) {
-                if ($self.is("img")) {
-                    $self.attr("src", settings.placeholder);
-                }
-            }
-
-            /* When appear is triggered load original image. */
-            $self.one("appear", function() {
-                if (!this.loaded) {
-                    if (settings.appear) {
-                        var elements_left = elements.length;
-                        settings.appear.call(self, elements_left, settings);
-                    }
-                    $("<img />")
-                        .one("load", function() {
-                            var original = $self.attr("data-" + settings.data_attribute);
-                            $self.hide();
-                            if ($self.is("img")) {
-                                $self.attr("src", original);
-                            } else {
-                                $self.css("background-image", "url('" + original + "')");
-                            }
-                            $self[settings.effect](settings.effect_speed);
-
-                            self.loaded = true;
-
-                            /* Remove image from array so it is not looped next time. */
-                            var temp = $.grep(elements, function(element) {
-                                return !element.loaded;
-                            });
-                            elements = $(temp);
-
-                            if (settings.load) {
-                                var elements_left = elements.length;
-                                settings.load.call(self, elements_left, settings);
-                            }
-                        })
-                        .attr("src", $self.attr("data-" + settings.data_attribute));
-                }
-            });
-
-            /* When wanted event is triggered load original image */
-            /* by triggering appear.                              */
-            if (0 !== settings.event.indexOf("scroll")) {
-                $self.on(settings.event, function() {
-                    if (!self.loaded) {
-                        $self.trigger("appear");
-                    }
-                });
-            }
-        });
-
-        /* Check if something appears when window is resized. */
-        $window.on("resize", function() {
-            update();
-        });
-
-        /* With IOS5 force loading images when navigating with back button. */
-        /* Non optimal workaround. */
-        if ((/(?:iphone|ipod|ipad).*os 5/gi).test(navigator.appVersion)) {
-            $window.on("pageshow", function(event) {
-                if (event.originalEvent && event.originalEvent.persisted) {
-                    elements.each(function() {
-                        $(this).trigger("appear");
-                    });
-                }
-            });
-        }
-
-        /* Force initial check if images should appear. */
-        $(document).ready(function() {
-            update();
-        });
-
-        return this;
-    };
-
-    /* Convenience methods in jQuery namespace.           */
-    /* Use as  $.belowthefold(element, {threshold : 100, container : window}) */
-
-    $.belowthefold = function(element, settings) {
-        var fold;
-
-        if (settings.container === undefined || settings.container === window) {
-            fold = (window.innerHeight ? window.innerHeight : $window.height()) + $window.scrollTop();
+          }).bind(this));
+          data_str += valString;
         } else {
-            fold = $(settings.container).offset().top + $(settings.container).height();
+          data_str += key + '=' + value + '&';
         }
+    }
 
-        return fold <= $(element).offset().top - settings.threshold;
-    };
+    //remove the last character
+    data_str = data_str.substr(0, data_str.length - 1);
+    return data_str;
+};
 
-    $.rightoffold = function(element, settings) {
-        var fold;
+/**
+ * Create a Signing Key
+ * @param  {String} token_secret Secret Token
+ * @return {String} Signing Key
+ */
+OAuth.prototype.getSigningKey = function(token_secret) {
+    token_secret = token_secret || '';
 
-        if (settings.container === undefined || settings.container === window) {
-            fold = $window.width() + $window.scrollLeft();
+    if(!this.last_ampersand && !token_secret) {
+        return this.percentEncode(this.consumer.secret);
+    }
+
+    return this.percentEncode(this.consumer.secret) + '&' + this.percentEncode(token_secret);
+};
+
+/**
+ * Get base url
+ * @param  {String} url
+ * @return {String}
+ */
+OAuth.prototype.getBaseUrl = function(url) {
+    return url.split('?')[0];
+};
+
+/**
+ * Get data from String
+ * @param  {String} string
+ * @return {Object}
+ */
+OAuth.prototype.deParam = function(string) {
+    var arr = string.split('&');
+    var data = {};
+
+    for(var i = 0; i < arr.length; i++) {
+        var item = arr[i].split('=');
+
+        // '' value
+        item[1] = item[1] || '';
+
+        data[item[0]] = decodeURIComponent(item[1]);
+    }
+
+    return data;
+};
+
+/**
+ * Get data from url
+ * @param  {String} url
+ * @return {Object}
+ */
+OAuth.prototype.deParamUrl = function(url) {
+    var tmp = url.split('?');
+
+    if (tmp.length === 1)
+        return {};
+
+    return this.deParam(tmp[1]);
+};
+
+/**
+ * Percent Encode
+ * @param  {String} str
+ * @return {String} percent encoded string
+ */
+OAuth.prototype.percentEncode = function(str) {
+    return encodeURIComponent(str)
+        .replace(/\!/g, "%21")
+        .replace(/\*/g, "%2A")
+        .replace(/\'/g, "%27")
+        .replace(/\(/g, "%28")
+        .replace(/\)/g, "%29");
+};
+
+/**
+ * Percent Encode Object
+ * @param  {Object} data
+ * @return {Object} percent encoded data
+ */
+OAuth.prototype.percentEncodeData = function(data) {
+    var result = {};
+
+    for(var key in data) {
+        var value = data[key];
+        // check if the value is an array
+        if (value && Array.isArray(value)){
+          var newValue = [];
+          // percentEncode every value
+          value.forEach((function(val){
+            newValue.push(this.percentEncode(val));
+          }).bind(this));
+          value = newValue;
         } else {
-            fold = $(settings.container).offset().left + $(settings.container).width();
+          value = this.percentEncode(value);
         }
+        result[this.percentEncode(key)] = value;
+    }
 
-        return fold <= $(element).offset().left - settings.threshold;
+    return result;
+};
+
+/**
+ * Get OAuth data as Header
+ * @param  {Object} oauth_data
+ * @return {String} Header data key - value
+ */
+OAuth.prototype.toHeader = function(oauth_data) {
+    oauth_data = this.sortObject(oauth_data);
+
+    var header_value = 'OAuth ';
+
+    for(var key in oauth_data) {
+        if (key.indexOf('oauth_') === -1)
+            continue;
+        header_value += this.percentEncode(key) + '="' + this.percentEncode(oauth_data[key]) + '"' + this.parameter_seperator;
+    }
+
+    return {
+        Authorization: header_value.substr(0, header_value.length - this.parameter_seperator.length) //cut the last chars
     };
+};
 
-    $.abovethetop = function(element, settings) {
-        var fold;
+/**
+ * Create a random word characters string with input length
+ * @return {String} a random word characters string
+ */
+OAuth.prototype.getNonce = function() {
+    var word_characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var result = '';
 
-        if (settings.container === undefined || settings.container === window) {
-            fold = $window.scrollTop();
-        } else {
-            fold = $(settings.container).offset().top;
-        }
+    for(var i = 0; i < this.nonce_length; i++) {
+        result += word_characters[parseInt(Math.random() * word_characters.length, 10)];
+    }
 
-        return fold >= $(element).offset().top + settings.threshold  + $(element).height();
-    };
+    return result;
+};
 
-    $.leftofbegin = function(element, settings) {
-        var fold;
+/**
+ * Get Current Unix TimeStamp
+ * @return {Int} current unix timestamp
+ */
+OAuth.prototype.getTimeStamp = function() {
+    return parseInt(new Date().getTime()/1000, 10);
+};
 
-        if (settings.container === undefined || settings.container === window) {
-            fold = $window.scrollLeft();
-        } else {
-            fold = $(settings.container).offset().left;
-        }
+////////////////////// HELPER FUNCTIONS //////////////////////
 
-        return fold >= $(element).offset().left + settings.threshold + $(element).width();
-    };
+/**
+ * Merge object
+ * @param  {Object} obj1
+ * @param  {Object} obj2
+ * @return {Object}
+ */
+OAuth.prototype.mergeObject = function(obj1, obj2) {
+    obj1 = obj1 || {};
+    obj2 = obj2 || {};
 
-    $.inviewport = function(element, settings) {
-         return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) &&
-                !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
-     };
+    var merged_obj = obj1;
+    for(var key in obj2) {
+        merged_obj[key] = obj2[key];
+    }
+    return merged_obj;
+};
 
-    /* Custom selectors for your convenience.   */
-    /* Use as $("img:below-the-fold").something() or */
-    /* $("img").filter(":below-the-fold").something() which is faster */
+/**
+ * Sort object by key
+ * @param  {Object} data
+ * @return {Object} sorted object
+ */
+OAuth.prototype.sortObject = function(data) {
+    var keys = Object.keys(data);
+    var result = {};
 
-    $.extend($.expr[":"], {
-        "below-the-fold" : function(a) { return $.belowthefold(a, {threshold : 0}); },
-        "above-the-top"  : function(a) { return !$.belowthefold(a, {threshold : 0}); },
-        "right-of-screen": function(a) { return $.rightoffold(a, {threshold : 0}); },
-        "left-of-screen" : function(a) { return !$.rightoffold(a, {threshold : 0}); },
-        "in-viewport"    : function(a) { return $.inviewport(a, {threshold : 0}); },
-        /* Maintain BC for couple of versions. */
-        "above-the-fold" : function(a) { return !$.belowthefold(a, {threshold : 0}); },
-        "right-of-fold"  : function(a) { return $.rightoffold(a, {threshold : 0}); },
-        "left-of-fold"   : function(a) { return !$.rightoffold(a, {threshold : 0}); }
-    });
+    keys.sort();
 
-})(jQuery, window, document);
+    for(var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        result[key] = data[key];
+    }
+
+    return result;
+};

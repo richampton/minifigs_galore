@@ -62,5 +62,62 @@
 			console.log('click');
 			$(this).find("form")[0].submit();
 		});
+
+
+		$('#form_head').click(function(event) {
+			event.preventDefault();
+			$.ajax({
+				url           : "https://rebrickable.com/api/get_part",
+				data : {
+					key        : "QVH4zSR0PZ",
+					format     : "json",
+					part_id    : $(this).find(".form_id").html(),
+					inc_ext    : 1,
+					inc_colors : 1,
+				},
+				type          : "GET",
+				dataType      : "json",
+			})
+
+			.done(function( json ) {
+				console.log('ajax success rebrickable');
+				var lego_design_id = json.external_part_ids[1].lego_design_id;
+
+				$.ajax({
+					url       : "https://api.brickowl.com/v1/catalog/search",
+					data : {
+						key    : "60bc73a3b961049c242064bc77a5632c7d3a6fa6ef23859334b9540a11010e10",
+						query  : lego_design_id,
+					},
+					type       : "GET",
+					dataType   : "json",
+				})
+				.done(function( json ) {
+					console.log('ajax success brickowl');
+					$("#col1").append(json);
+					$("#col1").append(json[0]);
+				})
+					.fail(function( xhr, status, errorThrown ) {
+					// alert( "Sorry, there was a problem!" );
+					console.log( "brickowl Error: " + errorThrown );
+					console.log( "brickowl Status: " + status );
+					console.dir( xhr );
+				})
+
+
+			})
+			.fail(function( xhr, status, errorThrown ) {
+				// alert( "Sorry, there was a problem!" );
+				console.log( "rebrickable Error: " + errorThrown );
+				console.log( "rebrickable Status: " + status );
+				console.dir( xhr );
+			})
+
+			.always(function( xhr, status ) {
+				// alert( "The request is complete!" );
+			});
+
+		});
+
 	});
 </script>
